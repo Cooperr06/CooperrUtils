@@ -1,0 +1,24 @@
+name: CooperrUtils
+version: ${project.version}
+main: de.cooperr.cooperrutils.CooperrUtils
+api-version: 1.16
+prefix: CooperrUtils
+load: STARTUP
+authors: [ Cooperr06 ]
+description: Die Utils von dem Cooperr-Server
+
+commands:
+  fly:
+    description: Lässt dich oder andere fliegen
+    usage: /fly [player]
+    permission: cooperrutils.command.fly
+  inventory:
+    description: Zeigt dir das Inventar von einem anderen Spieler
+    usage: /inventory <player>
+    permission: cooperrutils.command.inventory
+    aliases:
+      - inv
+  client:
+    description: Zeigt dir den Client-Namen von einem Spieler an
+    usage: /client <player>
+    permission: cooperrutils.command.client
