@@ -26,5 +26,7 @@ public class PlayerJoinListener implements Listener {
                 .content("» ")
                 .color(TextColor.fromHexString("#5555FF"))
                 .content(player.getName()));
+
+        player.addAttachment(plugin, "cooperrutils.default", true);
     }
 }
