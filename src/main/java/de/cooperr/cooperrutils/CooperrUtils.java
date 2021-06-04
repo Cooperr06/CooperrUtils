@@ -13,7 +13,6 @@ public final class CooperrUtils extends JavaPlugin {
 
         saveConfig();
 
-        getConfig().addDefault("messages.wrong-sender", "§4Du musst ein Spieler sein, um diesen Befehl nutzen zu können!");
         getConfig().addDefault("settings.damage-indicator", false);
         getConfig().options().header("Configuration File for Plugin " + getName() + " version " + getDescription().getVersion() + "!");
         getConfig().options().copyDefaults();
@@ -33,6 +32,7 @@ public final class CooperrUtils extends JavaPlugin {
         new FlyCommand(this);
         new InventoryCommand(this);
         new ClientCommand(this);
+        new PingCommand(this);
     }
 
     private void registerListeners() {
@@ -42,6 +42,6 @@ public final class CooperrUtils extends JavaPlugin {
     }
 
     public void sendWrongSenderMessage(CommandSender sender) {
-        sender.sendMessage(getConfig().getString("messages.wrong-sender"));
+        sender.sendMessage("§4Du musst ein Spieler sein, um diesen Befehl nutzen zu können!");
     }
 }
