@@ -14,6 +14,7 @@ public class PlayerQuitListener implements Listener {
 
     public PlayerQuitListener(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler

@@ -14,6 +14,7 @@ public class PlayerJoinListener implements Listener {
 
     public PlayerJoinListener(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler

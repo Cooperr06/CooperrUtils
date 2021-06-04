@@ -19,6 +19,7 @@ public class PingCommand implements CommandExecutor, TabCompleter {
 
     public PingCommand(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getCommand("ping").setExecutor(this);
     }
 
     @Override

@@ -15,6 +15,7 @@ public class EntityDamageListener implements Listener {
 
     public EntityDamageListener(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler

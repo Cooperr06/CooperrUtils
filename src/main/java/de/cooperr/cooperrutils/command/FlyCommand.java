@@ -21,7 +21,7 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
 
     public FlyCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        Objects.requireNonNull(plugin.getCommand("fly")).setExecutor(this);
+        plugin.getCommand("fly").setExecutor(this);
     }
 
     @Override

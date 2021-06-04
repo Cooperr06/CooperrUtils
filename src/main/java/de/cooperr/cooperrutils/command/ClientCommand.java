@@ -19,6 +19,7 @@ public class ClientCommand implements CommandExecutor, TabCompleter {
 
     public ClientCommand(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getCommand("client").setExecutor(this);
     }
 
     @Override

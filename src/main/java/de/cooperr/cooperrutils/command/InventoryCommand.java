@@ -19,6 +19,7 @@ public class InventoryCommand implements CommandExecutor, TabCompleter {
 
     public InventoryCommand(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getCommand("inventory").setExecutor(this);
     }
 
     @Override
