@@ -2,6 +2,7 @@ package de.cooperr.cooperrutils;
 
 import de.cooperr.cooperrutils.command.*;
 import de.cooperr.cooperrutils.listener.AsyncChatListener;
+import de.cooperr.cooperrutils.listener.EntityDamageListener;
 import de.cooperr.cooperrutils.listener.PlayerJoinListener;
 import de.cooperr.cooperrutils.listener.PlayerQuitListener;
 import org.bukkit.command.CommandSender;
@@ -52,6 +53,7 @@ public final class CooperrUtils extends JavaPlugin {
         new PlayerJoinListener(this);
         new PlayerQuitListener(this);
         new AsyncChatListener(this);
+        new EntityDamageListener(this);
     }
 
     public void sendWrongSenderMessage(CommandSender sender) {
