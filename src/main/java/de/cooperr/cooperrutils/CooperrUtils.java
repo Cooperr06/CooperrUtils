@@ -5,6 +5,7 @@ import de.cooperr.cooperrutils.listener.AsyncChatListener;
 import de.cooperr.cooperrutils.listener.EntityDamageListener;
 import de.cooperr.cooperrutils.listener.PlayerJoinListener;
 import de.cooperr.cooperrutils.listener.PlayerQuitListener;
+import de.cooperr.cooperrutils.util.Timer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -17,8 +18,12 @@ import java.util.logging.Level;
 
 public final class CooperrUtils extends JavaPlugin {
 
+    private Timer timer;
+
     @Override
     public void onEnable() {
+
+        timer = new Timer(this);
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
@@ -58,6 +63,10 @@ public final class CooperrUtils extends JavaPlugin {
 
     public void sendWrongSenderMessage(CommandSender sender) {
         sender.sendMessage("§4Du musst ein Spieler sein, um diesen Befehl nutzen zu können!");
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
 
     public void sendToBungeeCord(Player player, String message, String... args) {
