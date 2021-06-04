@@ -35,18 +35,7 @@ public class EntityDamageListener implements Listener {
             return;
         }
 
-        plugin.getServer().broadcast(Component.text("")
-                .color(TextColor.fromHexString("#FFAA00"))
-                .content(player.getName())
-                .color(TextColor.fromHexString("#AAAAAA"))
-                .content(" hat ")
-                .color(TextColor.fromHexString("#FFAA00"))
-                .content(String.valueOf(event.getFinalDamage()))
-                .color(TextColor.fromHexString("#AAAAAA"))
-                .content(" Schaden durch ")
-                .color(TextColor.fromHexString("#FFAA00"))
-                .content(event.getCause().name())
-                .color(TextColor.fromHexString("#AAAAAA"))
-                .content(" bekommen!"), "cooperrutils.default");
+        plugin.getServer().broadcast(Component.text("§9" + player.getName() + " §7hat §9" + event.getFinalDamage() +
+                " §7Schaden durch §9" + event.getCause().name() + " §7bekommen!"), "cooperrutils.default");
     }
 }

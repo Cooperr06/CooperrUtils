@@ -2,7 +2,6 @@ package de.cooperr.cooperrutils.listener;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,10 +21,6 @@ public class PlayerQuitListener implements Listener {
 
         Player player = event.getPlayer();
 
-        event.quitMessage(Component.text("")
-                .color(TextColor.fromHexString("#FF5555"))
-                .content("» ")
-                .color(TextColor.fromHexString("#5555FF"))
-                .content(player.getName()));
+        event.quitMessage(Component.text("§c« §9" + player.getName()));
     }
 }

@@ -1,6 +1,8 @@
 package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
+import net.kyori.adventure.text.Component;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,18 +11,16 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class FlyCommand implements CommandExecutor, TabCompleter {
+public class HealFeedCommand implements CommandExecutor, TabCompleter {
 
     private final CooperrUtils plugin;
 
-    public FlyCommand(CooperrUtils plugin) {
+    public HealFeedCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        plugin.getCommand("fly").setExecutor(this);
     }
+
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -34,10 +34,26 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
 
             Player player = (Player) sender;
 
-            player.setAllowFlight(!player.getAllowFlight());
+            player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+            player.setFoodLevel(20);
+
+            player.sendMessage(Component.text("§7Du hast dich §9geheilt§7!"));
+
             return true;
 
         } else if (args.length == 1) {
+
+            if (args[0].equals("@a")) {
+
+                for (Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
+
+                    onlinePlayer.setHealth(onlinePlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+                    onlinePlayer.setFoodLevel(20);
+
+                    onlinePlayer.sendMessage(Component.text("§9Alle §7wurden von §9" + sender.getName() + " geheilt§7!"));
+                }
+                return true;
+            }
 
             Player target = plugin.getServer().getPlayer(args[0]);
 
@@ -46,43 +62,26 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
-            target.setAllowFlight(!target.getAllowFlight());
+            target.setHealth(target.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+            target.setFoodLevel(20);
+
+            sender.sendMessage(Component.text("§7Du hast §9" + target.getName() + " geheilt§7!"));
+            target.sendMessage(Component.text("§7Du wurdest von §9" + sender.getName() + " geheilt§7!"));
+
             return true;
 
         } else {
-
             sendUsageMessage(sender);
             return true;
-
         }
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /fly [player]");
+        sender.sendMessage("§4Usage: /healfeed [player]");
     }
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-
-        final List<String> tabCompletion = new ArrayList<>();
-
-        if (args.length == 0) {
-
-            plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> tabCompletion.add(onlinePlayer.getName()));
-
-            Collections.sort(tabCompletion);
-            return tabCompletion;
-
-        } else if (args.length == 1) {
-
-            plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> tabCompletion.add(onlinePlayer.getName()));
-
-            tabCompletion.removeIf(s -> !s.startsWith(args[0]));
-
-            Collections.sort(tabCompletion);
-            return tabCompletion;
-
-        }
         return null;
     }
 }

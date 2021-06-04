@@ -63,14 +63,7 @@ public class Timer {
         running = false;
 
         for (Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
-            onlinePlayer.sendTitle("§6Timer", "§4stoppt", 10, 20, 10);
-            onlinePlayer.sendMessage(Component.text("")
-                    .color(TextColor.fromHexString("#AAAAAA"))
-                    .content("Die Zeit liegt bei ")
-                    .color(TextColor.fromHexString("#FFAA00"))
-                    .content(getFormattedTime())
-                    .color(TextColor.fromHexString("#AAAAAA"))
-                    .content("!"));
+            onlinePlayer.sendMessage(Component.text("§7Die Zeit liegt bei §6§l" + getFormattedTime() + "§7!"));
         }
 
         plugin.getServer().getScheduler().cancelTask(taskId);
