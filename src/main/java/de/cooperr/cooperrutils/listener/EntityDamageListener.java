@@ -2,7 +2,6 @@ package de.cooperr.cooperrutils.listener;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
