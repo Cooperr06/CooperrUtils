@@ -30,3 +30,7 @@ commands:
     description: Setzt die Welten zurück
     usage: /reset
     permission: cooperrutils.command.reset
+  timer:
+    description: Managed den Timer
+    usage: /timer <start | stop | pause>
+    permission: cooperrutils.command.timer

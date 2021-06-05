@@ -52,6 +52,7 @@ public final class CooperrUtils extends JavaPlugin {
         new ClientCommand(this);
         new PingCommand(this);
         new ResetCommand(this);
+        new TimerCommand(this);
     }
 
     private void registerListeners() {
