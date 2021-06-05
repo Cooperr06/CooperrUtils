@@ -51,8 +51,10 @@ public final class CooperrUtils extends JavaPlugin {
         new InventoryCommand(this);
         new ClientCommand(this);
         new PingCommand(this);
+        new HealFeedCommand(this);
         new ResetCommand(this);
         new TimerCommand(this);
+        new GamemodeCommand(this);
     }
 
     private void registerListeners() {

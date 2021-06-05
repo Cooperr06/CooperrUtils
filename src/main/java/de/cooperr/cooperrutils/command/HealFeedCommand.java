@@ -11,6 +11,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HealFeedCommand implements CommandExecutor, TabCompleter {
@@ -19,6 +21,7 @@ public class HealFeedCommand implements CommandExecutor, TabCompleter {
 
     public HealFeedCommand(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getCommand("healfeed").setExecutor(this);
     }
 
 
@@ -77,11 +80,32 @@ public class HealFeedCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /healfeed [player]");
+        sender.sendMessage("§4Usage: /healfeed [player | @a]");
     }
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+
+        final List<String> tabCompletion = new ArrayList<>();
+
+        if (args.length == 0) {
+
+            plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> tabCompletion.add(onlinePlayer.getName()));
+            tabCompletion.add("@a");
+
+            Collections.sort(tabCompletion);
+            return tabCompletion;
+
+        } else if (args.length == 1) {
+
+            plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> tabCompletion.add(onlinePlayer.getName()));
+            tabCompletion.add("@a");
+
+            tabCompletion.removeIf(s -> !s.startsWith(args[0]));
+
+            Collections.sort(tabCompletion);
+            return tabCompletion;
+        }
         return null;
     }
 }

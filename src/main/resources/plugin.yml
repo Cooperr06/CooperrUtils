@@ -26,11 +26,23 @@ commands:
     description: Zeigt dir die Latenz von einem Spieler an
     usage: /ping <player>
     permission: cooperrutils.command.ping
+  healfeed:
+    description: Heilt dich, andere oder alle Spieler
+    usage: /healfeed [player | @a]
+    permission: cooperrutils.command.healfeed
+    aliases:
+      - hf
   reset:
     description: Setzt die Welten zurück
     usage: /reset
     permission: cooperrutils.command.reset
   timer:
     description: Managed den Timer
-    usage: /timer <start | stop | pause>
+    usage: /timer <action>
     permission: cooperrutils.command.timer
+  gamemode:
+    description: Wechselt den Gamemode von deinem, einem anderen oder allen Spielern
+    usage: /gamemode <mode> [player | @a]
+    permission: minecraft.command.gamemode
+    aliases:
+      - gm

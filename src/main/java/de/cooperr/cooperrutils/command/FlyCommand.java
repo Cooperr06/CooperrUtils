@@ -81,7 +81,6 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
 
             Collections.sort(tabCompletion);
             return tabCompletion;
-
         }
         return null;
     }

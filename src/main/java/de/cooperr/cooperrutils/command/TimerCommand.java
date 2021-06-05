@@ -19,6 +19,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
 
     public TimerCommand(CooperrUtils plugin) {
         this.plugin = plugin;
+        plugin.getCommand("timer").setExecutor(this);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /timer <start | stop | pause>");
+        sender.sendMessage("§4Usage: /timer <action>");
     }
 
     @Override
@@ -70,7 +71,6 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
 
             Collections.sort(tabCompletion);
             return tabCompletion;
-
         }
         return null;
     }

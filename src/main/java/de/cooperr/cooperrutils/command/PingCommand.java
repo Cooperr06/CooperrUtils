@@ -65,7 +65,6 @@ public class PingCommand implements CommandExecutor, TabCompleter {
 
             Collections.sort(tabCompletion);
             return tabCompletion;
-
         }
         return null;
     }
