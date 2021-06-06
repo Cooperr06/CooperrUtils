@@ -46,3 +46,7 @@ commands:
     permission: minecraft.command.gamemode
     aliases:
       - gm
+  heartboard:
+    description: Zeigt oder versteckt das Heartboard in der Tablist
+    usage: /heartboard <action>
+    permission: cooperrutils.command.heartboard

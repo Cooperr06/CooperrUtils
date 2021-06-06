@@ -1,10 +1,7 @@
 package de.cooperr.cooperrutils;
 
 import de.cooperr.cooperrutils.command.*;
-import de.cooperr.cooperrutils.listener.AsyncChatListener;
-import de.cooperr.cooperrutils.listener.EntityDamageListener;
-import de.cooperr.cooperrutils.listener.PlayerJoinListener;
-import de.cooperr.cooperrutils.listener.PlayerQuitListener;
+import de.cooperr.cooperrutils.listener.*;
 import de.cooperr.cooperrutils.util.Timer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -55,6 +52,7 @@ public final class CooperrUtils extends JavaPlugin {
         new ResetCommand(this);
         new TimerCommand(this);
         new GamemodeCommand(this);
+        new HeartboardCommand(this);
     }
 
     private void registerListeners() {
@@ -62,6 +60,7 @@ public final class CooperrUtils extends JavaPlugin {
         new PlayerQuitListener(this);
         new AsyncChatListener(this);
         new EntityDamageListener(this);
+        new EntityRegainHealthListener(this);
     }
 
     public void sendWrongSenderMessage(CommandSender sender) {

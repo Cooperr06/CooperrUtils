@@ -20,19 +20,13 @@ public class Timer {
 
     public Timer(CooperrUtils plugin) {
         this.plugin = plugin;
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
-    }
-
-    public Timer(CooperrUtils plugin, int seconds, int minutes, int hours) {
-        this.plugin = plugin;
-        this.seconds = seconds;
-        this.minutes = minutes;
-        this.hours = hours;
     }
 
     public void start() {
+
+        if (running) {
+            return;
+        }
 
         running = true;
 
