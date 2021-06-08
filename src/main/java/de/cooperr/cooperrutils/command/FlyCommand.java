@@ -1,6 +1,8 @@
 package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,6 +37,7 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
             Player player = (Player) sender;
 
             player.setAllowFlight(!player.getAllowFlight());
+            player.sendMessage(Component.text("Du kannst jetzt " + (player.getAllowFlight() ? "" : "nicht mehr ") + "fliegen!", NamedTextColor.GRAY));
             return true;
 
         } else if (args.length == 1) {
@@ -47,6 +50,9 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
             }
 
             target.setAllowFlight(!target.getAllowFlight());
+            sender.sendMessage(Component.text(target.getName(), NamedTextColor.BLUE)
+                    .append(Component.text(" kann jetzt " + (target.getAllowFlight() ? "" : "nicht mehr ") + "fliegen!", NamedTextColor.GRAY)));
+            target.sendMessage(Component.text("Du kannst jetzt " + (target.getAllowFlight() ? "" : "nicht mehr ") + "fliegen!", NamedTextColor.GRAY));
             return true;
 
         } else {
@@ -58,7 +64,7 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /fly [player]");
+        sender.sendMessage(Component.text("Usage: /fly [player]", NamedTextColor.DARK_RED));
     }
 
     @Override

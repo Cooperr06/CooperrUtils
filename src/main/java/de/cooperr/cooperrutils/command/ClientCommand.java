@@ -1,6 +1,8 @@
 package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,13 +39,16 @@ public class ClientCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        sender.sendMessage("§a" + target.getName() + " benutzt den Client \"" + target.getClientBrandName() + "\"!");
+        sender.sendMessage(Component.text(target.getName(), NamedTextColor.BLUE)
+                .append(Component.text(" benutzt den Client ", NamedTextColor.GRAY))
+                .append(Component.text(target.getClientBrandName(), NamedTextColor.BLUE))
+                .append(Component.text("!", NamedTextColor.GRAY)));
         return true;
 
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /client <player>");
+        sender.sendMessage(Component.text("Usage: /client <player>", NamedTextColor.DARK_RED));
     }
 
     @Override

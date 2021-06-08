@@ -2,6 +2,8 @@ package de.cooperr.cooperrutils.listener;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,8 +39,10 @@ public class EntityDamageListener implements Listener {
                 return;
             }
 
-            plugin.getServer().broadcast(Component.text("§9" + player.getName() + " §7hat §9" + event.getFinalDamage() +
-                    " §7Schaden durch §9" + event.getCause().name() + " §7bekommen!"), "cooperrutils.default");
+            plugin.getServer().broadcast(Component.text("> " + player.getName() + " | " + event.getFinalDamage() + " | " + event.getCause().name(),
+                    NamedTextColor.GRAY, TextDecoration.OBFUSCATED), "cooperrutils.default");
         }
+
+        // > Cooperr06 | 3.5 | EXPLOSION
     }
 }

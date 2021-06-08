@@ -2,6 +2,7 @@ package de.cooperr.cooperrutils.listener;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +23,8 @@ public class PlayerJoinListener implements Listener {
 
         Player player = event.getPlayer();
 
-        event.joinMessage(Component.text("§a» §9" + player.getName()));
+        event.joinMessage(Component.text("» ", NamedTextColor.GREEN)
+                .append(Component.text(player.getName(), NamedTextColor.GOLD)));
 
         player.addAttachment(plugin, "cooperrutils.default", true);
 

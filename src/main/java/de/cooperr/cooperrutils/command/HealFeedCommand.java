@@ -2,6 +2,7 @@ package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -40,7 +41,7 @@ public class HealFeedCommand implements CommandExecutor, TabCompleter {
             player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             player.setFoodLevel(20);
 
-            player.sendMessage(Component.text("§7Du hast dich §9geheilt§7!"));
+            player.sendMessage(Component.text("Du hast dich geheilt!", NamedTextColor.GRAY));
 
             return true;
 
@@ -53,7 +54,9 @@ public class HealFeedCommand implements CommandExecutor, TabCompleter {
                     onlinePlayer.setHealth(onlinePlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
                     onlinePlayer.setFoodLevel(20);
 
-                    onlinePlayer.sendMessage(Component.text("§9Alle §7wurden von §9" + sender.getName() + " geheilt§7!"));
+                    onlinePlayer.sendMessage(Component.text("Alle wurden von ", NamedTextColor.GRAY)
+                            .append(Component.text(sender.getName(), NamedTextColor.BLUE))
+                            .append(Component.text(" geheilt!", NamedTextColor.GRAY)));
                 }
                 return true;
             }
@@ -68,7 +71,9 @@ public class HealFeedCommand implements CommandExecutor, TabCompleter {
             target.setHealth(target.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             target.setFoodLevel(20);
 
-            sender.sendMessage(Component.text("§7Du hast §9" + target.getName() + " geheilt§7!"));
+            sender.sendMessage(Component.text("Du hast ", NamedTextColor.GRAY)
+                    .append(Component.text(target.getName(), NamedTextColor.BLUE))
+                    .append(Component.text(" geheilt!", NamedTextColor.GRAY)));
             target.sendMessage(Component.text("§7Du wurdest von §9" + sender.getName() + " geheilt§7!"));
 
             return true;
@@ -80,7 +85,7 @@ public class HealFeedCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /healfeed [player | @a]");
+        sender.sendMessage(Component.text("Usage: /healfeed [player | @a]", NamedTextColor.DARK_RED));
     }
 
     @Override

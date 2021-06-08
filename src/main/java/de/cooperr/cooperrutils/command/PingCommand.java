@@ -1,6 +1,8 @@
 package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,12 +39,15 @@ public class PingCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        sender.sendMessage("§6" + target.getName() + " §7hat eine Latenz von §6" + target.getPing() + "§7ms!");
+        sender.sendMessage(Component.text(target.getName(), NamedTextColor.BLUE)
+                .append(Component.text(" hat eine Latenz von ", NamedTextColor.GRAY))
+                .append(Component.text(target.getPing() + "ms", NamedTextColor.BLUE))
+                .append(Component.text("!", NamedTextColor.GRAY)));
         return true;
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /ping <player>");
+        sender.sendMessage(Component.text("Usage: /ping <player>", NamedTextColor.DARK_RED));
     }
 
     @Override

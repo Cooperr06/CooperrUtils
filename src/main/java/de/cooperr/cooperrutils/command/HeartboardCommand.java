@@ -2,6 +2,7 @@ package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -41,7 +42,7 @@ public class HeartboardCommand implements CommandExecutor, TabCompleter {
         if (args[0].equals("on")) {
 
             if (scoreboard.getObjective("heartboard") != null) {
-                sender.sendMessage("§4Das Heartboard ist bereits an!");
+                sender.sendMessage(Component.text("Das Heartboard ist bereits an!", NamedTextColor.DARK_RED));
                 return true;
             }
 
@@ -56,12 +57,14 @@ public class HeartboardCommand implements CommandExecutor, TabCompleter {
         } else if (args[0].equals("off")) {
 
             if (scoreboard.getObjective("heartboard") == null) {
-                sender.sendMessage("§4Das Heartboard ist bereits aus!");
+                sender.sendMessage(Component.text("Das Heartboard ist bereits aus!", NamedTextColor.DARK_RED));
                 return true;
             }
 
             scoreboard.getObjective("heartboard").unregister();
-            plugin.getServer().broadcast(Component.text("§7Das §9Heartboard §7ist jetzt §9an§7!"), "cooperrutils.default");
+            plugin.getServer().broadcast(Component.text("Das ", NamedTextColor.GRAY)
+                    .append(Component.text("Heartboard ", NamedTextColor.BLUE))
+                    .append(Component.text("ist jetzt an!", NamedTextColor.GRAY)), "cooperrutils.default");
             return true;
 
         } else {
@@ -71,11 +74,11 @@ public class HeartboardCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /heartboard <action>");
+        sender.sendMessage(Component.text("Usage: /heartboard <action>", NamedTextColor.DARK_RED));
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
 
         final List<String> tabCompletion = new ArrayList<>();
 

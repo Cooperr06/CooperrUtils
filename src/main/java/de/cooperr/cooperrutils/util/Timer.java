@@ -2,8 +2,9 @@ package de.cooperr.cooperrutils.util;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class Timer {
@@ -31,18 +32,15 @@ public class Timer {
         running = true;
 
         for (Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
-            onlinePlayer.sendTitle("§6Timer", "§2startet", 10, 20, 10);
+            onlinePlayer.sendTitle(ChatColor.GOLD + "Timer", ChatColor.DARK_GREEN + "startet", 10, 20, 10);
         }
 
         taskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
             for (Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
 
-                onlinePlayer.sendActionBar(Component.text("")
-                        .color(TextColor.fromHexString("#FFAA00"))
-                        .decoration(TextDecoration.BOLD, true)
-                        .content((hours < 10 ? "0" + hours : String.valueOf(hours)) + ":" +
-                                (minutes < 10 ? "0" + minutes : String.valueOf(minutes)) + ":" +
-                                (seconds < 10 ? "0" + seconds : String.valueOf(seconds))));
+                onlinePlayer.sendActionBar(Component.text((hours < 10 ? "0" + hours : String.valueOf(hours)) + ":" +
+                        (minutes < 10 ? "0" + minutes : String.valueOf(minutes)) + ":" +
+                        (seconds < 10 ? "0" + seconds : String.valueOf(seconds)), NamedTextColor.GOLD, TextDecoration.BOLD));
 
             }
         }, 0, 20);
@@ -57,7 +55,9 @@ public class Timer {
         running = false;
 
         for (Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
-            onlinePlayer.sendMessage(Component.text("§7Die Zeit liegt bei §6§l" + getFormattedTime() + "§7!"));
+            onlinePlayer.sendMessage(Component.text("Die Zeit liegt bei ", NamedTextColor.DARK_GREEN)
+                    .append(Component.text(getFormattedTime(), NamedTextColor.GOLD, TextDecoration.BOLD))
+                    .append(Component.text("!", NamedTextColor.DARK_GREEN)));
         }
 
         plugin.getServer().getScheduler().cancelTask(taskId);

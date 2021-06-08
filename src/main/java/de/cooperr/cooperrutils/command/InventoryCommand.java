@@ -1,6 +1,8 @@
 package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -45,7 +47,7 @@ public class InventoryCommand implements CommandExecutor, TabCompleter {
         }
 
         if (target.getUniqueId().equals(player.getUniqueId())) {
-            player.sendMessage("§4Du kannst nicht dein eigenes Inventar öffnen!");
+            player.sendMessage(Component.text("Du kannst nicht dein eigenes Inventar öffnen!", NamedTextColor.DARK_RED));
             return true;
         }
 
@@ -54,7 +56,7 @@ public class InventoryCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /inventory <player>");
+        sender.sendMessage(Component.text("Usage: /inventory <player>", NamedTextColor.DARK_RED));
     }
 
     @Override

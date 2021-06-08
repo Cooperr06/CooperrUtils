@@ -2,6 +2,8 @@ package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -70,22 +72,26 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
             case "survival":
             case "0":
                 player.setGameMode(GameMode.SURVIVAL);
-                plugin.getServer().broadcast(Component.text("§7§o" + player.getName() + " ist jetzt im Survival Mode!"), "minecraft.command.gamemode");
+                plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Survival Mode!",
+                        NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
                 return;
             case "creative":
             case "1":
                 player.setGameMode(GameMode.CREATIVE);
-                plugin.getServer().broadcast(Component.text("§7§o" + player.getName() + " ist jetzt im Creative Mode!"), "minecraft.command.gamemode");
+                plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Creative Mode!",
+                        NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
                 return;
             case "adventure":
             case "2":
                 player.setGameMode(GameMode.ADVENTURE);
-                plugin.getServer().broadcast(Component.text("§7§o" + player.getName() + " ist jetzt im Adventure Mode!"), "minecraft.command.gamemode");
+                plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Adventure Mode!",
+                        NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
                 return;
             case "spectator":
             case "3":
                 player.setGameMode(GameMode.SPECTATOR);
-                plugin.getServer().broadcast(Component.text("§7§o" + player.getName() + " ist jetzt im Spectator Mode!"), "minecraft.command.gamemode");
+                plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Spectator Mode!",
+                        NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
                 return;
             default:
                 sendUsageMessage(player);
@@ -94,7 +100,7 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /gamemode <mode> [player | @a]");
+        sender.sendMessage(Component.text("Usage: /gamemode <mode> [player | @a]", NamedTextColor.DARK_RED));
     }
 
     @Override

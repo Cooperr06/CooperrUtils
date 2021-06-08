@@ -1,6 +1,8 @@
 package de.cooperr.cooperrutils.command;
 
 import de.cooperr.cooperrutils.CooperrUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -39,7 +41,7 @@ public class ResetCommand implements CommandExecutor {
                 new File(plugin.getServer().getWorldContainer(), "world_nether"),
                 new File(plugin.getServer().getWorldContainer(), "world_the_end")};
 
-        final String[] worldChilds = {"data", "datapacks", "playerdata", "poi", "region"};
+        final String[] worldChildren = {"data", "datapacks", "playerdata", "poi", "region"};
 
         try {
             for (File world : worlds) {
@@ -50,7 +52,7 @@ public class ResetCommand implements CommandExecutor {
 
                 world.mkdirs();
 
-                for (String worldChild : worldChilds) {
+                for (String worldChild : worldChildren) {
                     new File(world, worldChild).mkdirs();
                 }
             }
@@ -64,6 +66,6 @@ public class ResetCommand implements CommandExecutor {
     }
 
     private void sendUsageMessage(CommandSender sender) {
-        sender.sendMessage("§4Usage: /reset");
+        sender.sendMessage(Component.text("Usage: /reset", NamedTextColor.DARK_RED));
     }
 }

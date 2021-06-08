@@ -3,6 +3,8 @@ package de.cooperr.cooperrutils;
 import de.cooperr.cooperrutils.command.*;
 import de.cooperr.cooperrutils.listener.*;
 import de.cooperr.cooperrutils.util.Timer;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -64,7 +66,7 @@ public final class CooperrUtils extends JavaPlugin {
     }
 
     public void sendWrongSenderMessage(CommandSender sender) {
-        sender.sendMessage("§4Du musst ein Spieler sein, um diesen Befehl nutzen zu können!");
+        sender.sendMessage(Component.text("Du musst ein Spieler sein, um diesen Befehl nutzen zu können!", NamedTextColor.DARK_RED));
     }
 
     public Timer getTimer() {
