@@ -55,6 +55,7 @@ public final class CooperrUtils extends JavaPlugin {
         new TimerCommand(this);
         new GamemodeCommand(this);
         new HeartboardCommand(this);
+        new PerformCommand(this);
     }
 
     private void registerListeners() {

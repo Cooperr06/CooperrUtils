@@ -50,3 +50,7 @@ commands:
     description: Zeigt oder versteckt das Heartboard in der Tablist
     usage: /heartboard <action>
     permission: cooperrutils.command.heartboard
+  perform:
+    description: Führt einen Command als ein anderer Spieler aus
+    usage: /perform [as player] [at player] <run> <command> [args...]
+    permission: minecraft.command.execute
