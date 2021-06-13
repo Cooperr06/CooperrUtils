@@ -30,8 +30,11 @@ public final class CooperrUtils extends JavaPlugin {
 
         getConfig().options().header("Configuration File for Plugin " + getName() + " version " + getDescription().getVersion() + "!");
 
+        getConfig().createSection("settings");
+        getConfig().createSection("positions");
+
         getConfig().addDefault("bungeecord", false);
-        getConfig().addDefault("settings.damage-indicator", false);
+        getConfig().getConfigurationSection("settings").addDefault("damage-indicator", false);
         getConfig().options().copyDefaults();
 
         getServer().getPluginManager().addPermission(new Permission("cooperrutils.default"));
@@ -55,6 +58,7 @@ public final class CooperrUtils extends JavaPlugin {
         new GamemodeCommand(this);
         new HeartboardCommand(this);
         new PerformCommand(this);
+        new PositionCommand(this);
     }
 
     private void registerListeners() {

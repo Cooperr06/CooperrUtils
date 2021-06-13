@@ -54,3 +54,7 @@ commands:
     description: Führt einen Command als ein anderer Spieler aus
     usage: /perform [as player] [at player] <run> <command> [args...]
     permission: minecraft.command.execute
+  position:
+    description: Managed die Positionen
+    usage: /position <action> [name]
+    permission: cooperrutils.command.position
