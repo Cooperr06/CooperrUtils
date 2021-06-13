@@ -3,10 +3,7 @@ package de.cooperr.cooperrutils.command;
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 public class TimerCommand implements CommandExecutor, TabCompleter {
 
@@ -21,7 +19,13 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
 
     public TimerCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        plugin.getCommand("timer").setExecutor(this);
+
+        PluginCommand command = plugin.getCommand("timer");
+        if (command == null) {
+            plugin.getLogger().log(Level.SEVERE, "Cannot register command \"timer\"");
+            return;
+        }
+        command.setExecutor(this);
     }
 
     @Override

@@ -4,10 +4,7 @@ import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 public class HealFeedCommand implements CommandExecutor, TabCompleter {
 
@@ -22,7 +20,13 @@ public class HealFeedCommand implements CommandExecutor, TabCompleter {
 
     public HealFeedCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        plugin.getCommand("healfeed").setExecutor(this);
+
+        PluginCommand command = plugin.getCommand("healfeed");
+        if (command == null) {
+            plugin.getLogger().log(Level.SEVERE, "Cannot register command \"healfeed\"");
+            return;
+        }
+        command.setExecutor(this);
     }
 
 

@@ -3,15 +3,13 @@ package de.cooperr.cooperrutils.command;
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.logging.Level;
 
 public class PerformCommand implements CommandExecutor, TabCompleter {
 
@@ -19,7 +17,13 @@ public class PerformCommand implements CommandExecutor, TabCompleter {
 
     public PerformCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        plugin.getCommand("perform").setExecutor(this);
+
+        PluginCommand command = plugin.getCommand("perform");
+        if (command == null) {
+            plugin.getLogger().log(Level.SEVERE, "Cannot register command \"perform\"");
+            return;
+        }
+        command.setExecutor(this);
     }
 
     @Override

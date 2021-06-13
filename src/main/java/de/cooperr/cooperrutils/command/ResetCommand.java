@@ -6,6 +6,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,7 +23,13 @@ public class ResetCommand implements CommandExecutor {
 
     public ResetCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        plugin.getCommand("reset").setExecutor(this);
+
+        PluginCommand command = plugin.getCommand("reset");
+        if (command == null) {
+            plugin.getLogger().log(Level.SEVERE, "Cannot register command \"reset\"");
+            return;
+        }
+        command.setExecutor(this);
     }
 
     @Override
@@ -37,7 +44,8 @@ public class ResetCommand implements CommandExecutor {
             plugin.sendToBungeeCord(onlinePlayer, "Connect", "lobby");
         }
 
-        final File[] worlds = {new File(plugin.getServer().getWorldContainer(), "world"),
+        final File[] worlds = {
+                new File(plugin.getServer().getWorldContainer(), "world"),
                 new File(plugin.getServer().getWorldContainer(), "world_nether"),
                 new File(plugin.getServer().getWorldContainer(), "world_the_end")};
 

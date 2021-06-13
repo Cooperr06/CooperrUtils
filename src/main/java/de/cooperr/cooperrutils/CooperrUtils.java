@@ -28,10 +28,10 @@ public final class CooperrUtils extends JavaPlugin {
 
         saveConfig();
 
-        getConfig().addDefault("settings.damage-indicator", false);
-        getConfig().addDefault("bungeecord", false);
-
         getConfig().options().header("Configuration File for Plugin " + getName() + " version " + getDescription().getVersion() + "!");
+
+        getConfig().addDefault("bungeecord", false);
+        getConfig().addDefault("settings.damage-indicator", false);
         getConfig().options().copyDefaults();
 
         getServer().getPluginManager().addPermission(new Permission("cooperrutils.default"));
@@ -42,7 +42,6 @@ public final class CooperrUtils extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
     }
 
     private void registerCommands() {

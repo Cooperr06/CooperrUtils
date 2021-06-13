@@ -5,10 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.GameMode;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 public class GamemodeCommand implements CommandExecutor, TabCompleter {
 
@@ -24,7 +22,13 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
 
     public GamemodeCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        plugin.getCommand("gamemode").setExecutor(this);
+
+        PluginCommand command = plugin.getCommand("gamemode");
+        if (command == null) {
+            plugin.getLogger().log(Level.SEVERE, "Cannot register command \"gamemode\"");
+            return;
+        }
+        command.setExecutor(this);
     }
 
     @Override

@@ -3,10 +3,7 @@ package de.cooperr.cooperrutils.command;
 import de.cooperr.cooperrutils.CooperrUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -14,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 public class ClientCommand implements CommandExecutor, TabCompleter {
 
@@ -21,7 +19,13 @@ public class ClientCommand implements CommandExecutor, TabCompleter {
 
     public ClientCommand(CooperrUtils plugin) {
         this.plugin = plugin;
-        plugin.getCommand("client").setExecutor(this);
+
+        PluginCommand command = plugin.getCommand("client");
+        if (command == null) {
+            plugin.getLogger().log(Level.SEVERE, "Cannot register command \"client\"");
+            return;
+        }
+        command.setExecutor(this);
     }
 
     @Override
@@ -41,7 +45,7 @@ public class ClientCommand implements CommandExecutor, TabCompleter {
 
         sender.sendMessage(Component.text(target.getName(), NamedTextColor.BLUE)
                 .append(Component.text(" benutzt den Client ", NamedTextColor.GRAY))
-                .append(Component.text(target.getClientBrandName(), NamedTextColor.BLUE))
+                .append(Component.text(target.getClientBrandName() == null ? "n.a." : target.getClientBrandName(), NamedTextColor.BLUE))
                 .append(Component.text("!", NamedTextColor.GRAY)));
         return true;
 
