@@ -2,6 +2,7 @@ package de.cooperr.cooperrutils;
 
 import de.cooperr.cooperrutils.command.*;
 import de.cooperr.cooperrutils.listener.*;
+import de.cooperr.cooperrutils.util.SettingsGui;
 import de.cooperr.cooperrutils.util.Timer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -18,11 +19,13 @@ import java.util.logging.Level;
 public final class CooperrUtils extends JavaPlugin {
 
     private Timer timer;
+    private SettingsGui settingsGui;
 
     @Override
     public void onEnable() {
 
         timer = new Timer(this);
+        settingsGui = new SettingsGui(this);
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
@@ -75,6 +78,10 @@ public final class CooperrUtils extends JavaPlugin {
 
     public Timer getTimer() {
         return timer;
+    }
+
+    public SettingsGui getSettingsGui() {
+        return settingsGui;
     }
 
     public void sendToBungeeCord(Player player, String message, String... args) {
