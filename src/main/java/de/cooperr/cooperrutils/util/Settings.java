@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SettingsGui implements Listener {
+public class Settings implements Listener {
 
     private final CooperrUtils plugin;
     private final Inventory inventory;
@@ -28,7 +28,7 @@ public class SettingsGui implements Listener {
     private final Map<Integer, Runnable> settingsRunnables = new HashMap<>();
     private final Map<Integer, ItemStack> itemStacks = new HashMap<>();
 
-    public SettingsGui(CooperrUtils plugin) {
+    public Settings(CooperrUtils plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
