@@ -2,12 +2,10 @@ package de.cooperr.cooperrutils;
 
 import de.cooperr.cooperrutils.command.*;
 import de.cooperr.cooperrutils.listener.*;
-import de.cooperr.cooperrutils.util.Settings;
 import de.cooperr.cooperrutils.util.Timer;
+import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -18,16 +16,16 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 
+@Getter
 public final class CooperrUtils extends JavaPlugin {
 
     private Timer timer;
-    private Settings settings;
 
     @Override
     public void onEnable() {
 
         timer = new Timer(this);
-        settings = new Settings(this);
+        timer.isRunning();
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
@@ -46,7 +44,6 @@ public final class CooperrUtils extends JavaPlugin {
 
         registerCommands();
         registerListeners();
-        registerSettings();
     }
 
     @Override
@@ -73,25 +70,11 @@ public final class CooperrUtils extends JavaPlugin {
         new AsyncChatListener(this);
         new EntityDamageListener(this);
         new EntityRegainHealthListener(this);
-    }
-
-    private void registerSettings() {
-        settings.addSetting(10, Material.REDSTONE, Component.text("Damage Indicator", NamedTextColor.GOLD), null, () ->
-                getConfig().getConfigurationSection("settings").set("damage-indicator", !getConfig().getConfigurationSection("settings").getBoolean("damage-indicator")));
-        settings.addSetting(12, Material.BARRIER, Component.text("Reset", NamedTextColor.DARK_RED, TextDecoration.BOLD), null, () ->
-                getServer().dispatchCommand(getServer().getConsoleSender(), "reset"));
+        new ConfigSetListener(this);
     }
 
     public void sendWrongSenderMessage(CommandSender sender) {
         sender.sendMessage(Component.text("Du musst ein Spieler sein, um diesen Befehl nutzen zu können!", NamedTextColor.DARK_RED));
-    }
-
-    public Timer getTimer() {
-        return timer;
-    }
-
-    public Settings getSettings() {
-        return settings;
     }
 
     public void sendToBungeeCord(Player player, String message, String... args) {

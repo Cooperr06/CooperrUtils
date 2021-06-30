@@ -1,12 +1,15 @@
 package de.cooperr.cooperrutils.util;
 
 import de.cooperr.cooperrutils.CooperrUtils;
+import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class Timer {
 
     private final CooperrUtils plugin;
@@ -69,17 +72,10 @@ public class Timer {
         }
     }
 
+    @NotNull
     public String getFormattedTime() {
         return (hours < 10 ? "0" + hours : String.valueOf(hours)) + ":" +
                 (minutes < 10 ? "0" + minutes : String.valueOf(minutes)) + ":" +
                 (seconds < 10 ? "0" + seconds : String.valueOf(seconds));
-    }
-
-    public int getTaskId() {
-        return taskId;
-    }
-
-    public boolean isRunning() {
-        return running;
     }
 }
