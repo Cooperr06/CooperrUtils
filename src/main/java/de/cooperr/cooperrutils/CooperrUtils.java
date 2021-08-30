@@ -25,7 +25,6 @@ public final class CooperrUtils extends JavaPlugin {
     public void onEnable() {
 
         timer = new Timer(this);
-        timer.isRunning();
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
@@ -70,7 +69,6 @@ public final class CooperrUtils extends JavaPlugin {
         new AsyncChatListener(this);
         new EntityDamageListener(this);
         new EntityRegainHealthListener(this);
-        new ConfigSetListener(this);
     }
 
     public void sendWrongSenderMessage(CommandSender sender) {
