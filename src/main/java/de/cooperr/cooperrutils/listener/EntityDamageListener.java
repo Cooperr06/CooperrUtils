@@ -42,7 +42,5 @@ public class EntityDamageListener implements Listener {
             plugin.getServer().broadcast(Component.text("> " + player.getName() + " | " + event.getFinalDamage() + " | " + event.getCause().name(),
                     NamedTextColor.GRAY, TextDecoration.OBFUSCATED), "cooperrutils.default");
         }
-
-        // > Cooperr06 | 3.5 | EXPLOSION
     }
 }

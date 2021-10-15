@@ -7,7 +7,6 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 @Getter
 public class Timer {
@@ -40,11 +39,9 @@ public class Timer {
 
         taskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
             for (Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
-
                 onlinePlayer.sendActionBar(Component.text((hours < 10 ? "0" + hours : String.valueOf(hours)) + ":" +
                         (minutes < 10 ? "0" + minutes : String.valueOf(minutes)) + ":" +
                         (seconds < 10 ? "0" + seconds : String.valueOf(seconds)), NamedTextColor.GOLD, TextDecoration.BOLD));
-
             }
         }, 0, 20);
     }
@@ -72,7 +69,6 @@ public class Timer {
         }
     }
 
-    @NotNull
     public String getFormattedTime() {
         return (hours < 10 ? "0" + hours : String.valueOf(hours)) + ":" +
                 (minutes < 10 ? "0" + minutes : String.valueOf(minutes)) + ":" +

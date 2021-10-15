@@ -73,33 +73,27 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
 
     private void analyseMode(Player player, String mode) {
         switch (mode) {
-            case "survival":
-            case "0":
+            case "survival", "0" -> {
                 player.setGameMode(GameMode.SURVIVAL);
                 plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Survival Mode!",
                         NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
-                return;
-            case "creative":
-            case "1":
+            }
+            case "creative", "1" -> {
                 player.setGameMode(GameMode.CREATIVE);
                 plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Creative Mode!",
                         NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
-                return;
-            case "adventure":
-            case "2":
+            }
+            case "adventure", "2" -> {
                 player.setGameMode(GameMode.ADVENTURE);
                 plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Adventure Mode!",
                         NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
-                return;
-            case "spectator":
-            case "3":
+            }
+            case "spectator", "3" -> {
                 player.setGameMode(GameMode.SPECTATOR);
                 plugin.getServer().broadcast(Component.text(player.getName() + " ist jetzt im Spectator Mode!",
                         NamedTextColor.DARK_GRAY, TextDecoration.OBFUSCATED), "minecraft.command.gamemode");
-                return;
-            default:
-                sendUsageMessage(player);
-                break;
+            }
+            default -> sendUsageMessage(player);
         }
     }
 

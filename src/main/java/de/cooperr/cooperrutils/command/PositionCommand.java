@@ -79,17 +79,14 @@ public class PositionCommand implements CommandExecutor, TabCompleter {
             Player player = (Player) sender;
 
             switch (args[0]) {
-
-                case "add":
-
+                case "add" -> {
                     section.set(args[1], player.getLocation().getBlock().getLocation());
                     plugin.getServer().broadcast(Component.text("Die Position ", NamedTextColor.GRAY)
                             .append(Component.text(args[1], NamedTextColor.BLUE))
                             .append(Component.text(" wurde erstellt!", NamedTextColor.GRAY)), "cooperrutils.default");
                     return true;
-
-                case "remove":
-
+                }
+                case "remove" -> {
                     if (section.contains(args[1])) {
 
                         section.set(args[1], null);
@@ -101,9 +98,8 @@ public class PositionCommand implements CommandExecutor, TabCompleter {
                         player.sendMessage(Component.text("Die Position " + args[1] + " existiert nicht!", NamedTextColor.DARK_RED));
                     }
                     return true;
-
-                case "get":
-
+                }
+                case "get" -> {
                     if (section.contains(args[1])) {
 
                         Location location = section.getLocation(args[1]);
@@ -118,10 +114,11 @@ public class PositionCommand implements CommandExecutor, TabCompleter {
                         player.sendMessage(Component.text("Die Position " + args[1] + " existiert nicht!", NamedTextColor.DARK_RED));
                     }
                     return true;
-
-                default:
+                }
+                default -> {
                     sendUsageMessage(player);
                     return true;
+                }
             }
         } else {
             sendUsageMessage(sender);

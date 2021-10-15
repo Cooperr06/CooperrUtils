@@ -37,19 +37,22 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
         }
 
         switch (args[0]) {
-
-            case "start":
+            case "start" -> {
                 plugin.getTimer().start();
                 return true;
-            case "stop":
+            }
+            case "stop" -> {
                 plugin.getTimer().stop(true);
                 return true;
-            case "pause":
+            }
+            case "pause" -> {
                 plugin.getTimer().stop(false);
                 return true;
-            default:
+            }
+            default -> {
                 sendUsageMessage(sender);
                 return true;
+            }
         }
     }
 
